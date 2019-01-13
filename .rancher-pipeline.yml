@@ -11,6 +11,8 @@ stages:
       dockerfilePath: ./two/Dockerfile
       buildContext: ./two
       tag: alpine-two:${CICD_EXECUTION_SEQUENCE}
+      env:
+         PLUGIN_STORAGE_PATH: /var/lib/docker2
     
 - name: Deploy
   steps:
