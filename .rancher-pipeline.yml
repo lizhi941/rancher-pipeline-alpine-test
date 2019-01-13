@@ -3,11 +3,11 @@ stages:
   steps:
   - publishImageConfig:
       dockerfilePath: ./one/Dockerfile
-      buildContext: .
+      buildContext: ./one
       tag: alpine-one:${CICD_EXECUTION_SEQUENCE}
   - publishImageConfig:
       dockerfilePath: ./two/Dockerfile
-      buildContext: .
+      buildContext: ./two
       tag: alpine-two:${CICD_EXECUTION_SEQUENCE}
     
 - name: Deploy
