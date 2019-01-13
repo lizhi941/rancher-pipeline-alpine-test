@@ -1,10 +1,12 @@
 stages:
-- name: Publish image
+- name: Publish image one
   steps:
   - publishImageConfig:
       dockerfilePath: ./one/Dockerfile
       buildContext: ./one
       tag: alpine-one:${CICD_EXECUTION_SEQUENCE}
+- name: Publish image two
+  steps:
   - publishImageConfig:
       dockerfilePath: ./two/Dockerfile
       buildContext: ./two
