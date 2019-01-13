@@ -1,0 +1,36 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: alpine
+spec:
+  selector:
+    app: alpine
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-one
+  labels:
+    app: alpine-one
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alpine-one
+  template:
+    metadata:
+      labels:
+        app: alpine-one
+    spec:
+      imagePullSecrets:
+      - name: pipeline-docker-registry
+      containers:
+      - name: alpine
+        image: alpine-one:${CICD_EXECUTION_SEQUENCE}
+        ports:
+        - containerPort: 80
